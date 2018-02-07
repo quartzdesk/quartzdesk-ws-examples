@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>quartzdesk-ws-examples</groupId>
+  <artifactId>quartzdesk-ws-examples-pom</artifactId>
+  <version>3.2.0</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>ws-connection-example-pom</module>
+    <module>ws-quartz-example-pom</module>
+    <module>ws-quartz-exec-history-example-pom</module>
+    <module>ws-quartz-exec-notif-rule-example-pom</module>
+    <module>ws-quartz-job-chain-example-pom</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.1.3</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.quartzdesk</groupId>
+        <artifactId>quartzdesk-api</artifactId>
+        <version>${quartzdesk-api.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.12</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+</project>
