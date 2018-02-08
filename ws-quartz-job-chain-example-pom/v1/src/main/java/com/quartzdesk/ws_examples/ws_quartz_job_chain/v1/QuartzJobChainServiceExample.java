@@ -12,6 +12,10 @@ import com.quartzdesk.service.types.v4_0.scheduler.quartz.QuartzJobChain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Prints the list of all global (i.e. scheduler-wide) job chains rules of the specified Quartz
+ * scheduler on the standard output.
+ */
 public class QuartzJobChainServiceExample
 {
   private static final Logger log = LoggerFactory.getLogger( QuartzJobChainServiceExample.class );
@@ -21,7 +25,6 @@ public class QuartzJobChainServiceExample
    */
   private static final String WS_QUARTZ_JOB_CHAIN_SERVICE_ENDPOINT_URL =
       "http://localhost:8080/quartzdesk/services/quartz_job_chain/v1_0/QuartzJobChainService";
-
 
   private static final String WS_QUARTZ_JOB_CHAIN_SERVICE_USERNAME = "service";
   private static final String WS_QUARTZ_JOB_CHAIN_SERVICE_PASSWORD = "password";

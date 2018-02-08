@@ -12,6 +12,10 @@ import com.quartzdesk.service.types.v4_0.scheduler.quartz.QuartzExecNotification
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Prints the list of all global (i.e. scheduler-wide) execution notification rules of the specified
+ * Quartz scheduler on the standard output.
+ */
 public class QuartzExecNotificationRuleServiceExample
 {
   private static final Logger log = LoggerFactory.getLogger( QuartzExecNotificationRuleServiceExample.class );
@@ -21,7 +25,6 @@ public class QuartzExecNotificationRuleServiceExample
    */
   private static final String WS_QUARTZ_EXEC_NOTIF_RULE_SERVICE_ENDPOINT_URL =
       "http://localhost:8080/quartzdesk/services/quartz_exec_notif_rule/v1_0/QuartzExecNotificationRuleService";
-
 
   private static final String WS_QUARTZ_EXEC_NOTIF_RULE_SERVICE_USERNAME = "service";
   private static final String WS_QUARTZ_EXEC_NOTIF_RULE_SERVICE_PASSWORD = "password";

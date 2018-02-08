@@ -12,6 +12,9 @@ import com.quartzdesk.service.types.v10.connection.SchedulerConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Prints the list of all registered scheduler connections on the standard output.
+ */
 public class ConnectionServiceExample
 {
   private static final Logger log = LoggerFactory.getLogger( ConnectionServiceExample.class );

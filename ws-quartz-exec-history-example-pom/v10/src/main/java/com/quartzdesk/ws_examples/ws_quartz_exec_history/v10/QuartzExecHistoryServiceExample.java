@@ -12,6 +12,10 @@ import com.quartzdesk.service.types.v10.scheduler.quartz.QuartzExecHistory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Prints the 10 most-recent execution history records from the specified Quartz
+ * scheduler on the standard output.
+ */
 public class QuartzExecHistoryServiceExample
 {
   private static final Logger log = LoggerFactory.getLogger( QuartzExecHistoryServiceExample.class );

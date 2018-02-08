@@ -47,7 +47,9 @@ public class QuartzServiceExample
   /*
    * Web service endpoint parameters.
    */
-  private static final String WS_ENDPOINT_URL = "http://localhost:8080/quartzdesk/services/quartz/v9_0/QuartzService";
+  private static final String WS_ENDPOINT_URL =
+      "http://localhost:8080/quartzdesk/services/quartz/v9_0/QuartzService";
+
   private static final String WS_USERNAME = "service";
   private static final String WS_PASSWORD = "password";
 
