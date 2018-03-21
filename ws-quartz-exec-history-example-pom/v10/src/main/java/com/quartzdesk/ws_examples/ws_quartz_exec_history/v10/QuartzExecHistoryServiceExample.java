@@ -3,6 +3,7 @@ package com.quartzdesk.ws_examples.ws_quartz_exec_history.v10;
 import com.quartzdesk.service.client.quartz_exec_history.v10_0.QuartzExecHistoryServiceClient;
 import com.quartzdesk.service.quartz_exec_history.v10_0.GetHistoryForSchedulerRequest;
 import com.quartzdesk.service.quartz_exec_history.v10_0.GetHistoryForSchedulerResponse;
+import com.quartzdesk.service.types.v10.common.TimePeriod;
 import com.quartzdesk.service.types.v10.connection.SchedulerConnection;
 import com.quartzdesk.service.types.v10.jmx.JmxProtocol;
 import com.quartzdesk.service.types.v10.jmx.RemoteJmxService;
@@ -11,6 +12,8 @@ import com.quartzdesk.service.types.v10.scheduler.quartz.QuartzExecHistory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Calendar;
 
 /**
  * Prints the 10 most-recent execution history records from the specified Quartz
@@ -69,8 +72,15 @@ public class QuartzExecHistoryServiceExample
   private void execute()
       throws Exception
   {
+    Calendar fetchFrom = Calendar.getInstance();
+    Calendar fetchTo = (Calendar) fetchFrom.clone();
+    fetchFrom.add( Calendar.DAY_OF_MONTH, -1 );
+
     GetHistoryForSchedulerRequest request = new GetHistoryForSchedulerRequest()
         .withConnection( SCHEDULER_CONNECTION )
+        .withFetchPeriod( new TimePeriod()
+            .withFrom( fetchFrom )
+            .withTo( fetchTo ) )
         .withMaxFetchSize( 10 );  // get at most 10 exec history records
 
     GetHistoryForSchedulerResponse response = client.getHistoryForScheduler( request );
