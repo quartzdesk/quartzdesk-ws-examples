@@ -6,7 +6,7 @@
 
   <groupId>quartzdesk-ws-examples</groupId>
   <artifactId>quartzdesk-ws-examples-pom</artifactId>
-  <version>3.4.0</version>
+  <version>3.4.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>
