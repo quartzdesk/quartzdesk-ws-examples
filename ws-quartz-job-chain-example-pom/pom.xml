@@ -5,13 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>ws-quartz-job-chain-example-pom</artifactId>
-  <version>3.4.3-SNAPSHOT</version>
+  <version>3.5.0</version>
   <packaging>pom</packaging>
 
   <parent>
     <groupId>quartzdesk-ws-examples</groupId>
     <artifactId>quartzdesk-ws-examples-pom</artifactId>
-    <version>3.4.3-SNAPSHOT</version>
+    <version>3.5.0</version>
   </parent>
 
   <modules>
