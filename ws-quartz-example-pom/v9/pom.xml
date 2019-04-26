@@ -5,17 +5,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>ws-quartz-example-v9</artifactId>
-  <version>3.6.0</version>
+  <version>3.7.0</version>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>quartzdesk-ws-examples</groupId>
     <artifactId>ws-quartz-example-pom</artifactId>
-    <version>3.6.0</version>
+    <version>3.7.0</version>
   </parent>
 
   <properties>
-    <quartzdesk-api.version>3.6.0</quartzdesk-api.version>
+    <quartzdesk-api.version>3.7.0</quartzdesk-api.version>
   </properties>
 
   <dependencies>
