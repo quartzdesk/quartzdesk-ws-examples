@@ -5,13 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>ws-quartz-example-pom</artifactId>
-  <version>3.7.0</version>
+  <version>3.7.1</version>
   <packaging>pom</packaging>
 
   <parent>
     <groupId>quartzdesk-ws-examples</groupId>
     <artifactId>quartzdesk-ws-examples-pom</artifactId>
-    <version>3.7.0</version>
+    <version>3.7.1</version>
   </parent>
 
   <modules>
