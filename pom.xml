@@ -6,7 +6,7 @@
 
   <groupId>quartzdesk-ws-examples</groupId>
   <artifactId>quartzdesk-ws-examples-pom</artifactId>
-  <version>4.0.0-SNAPSHOT</version>
+  <version>4.0.0</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -17,6 +17,19 @@
     <module>ws-quartz-exec-notif-rule-example-pom</module>
     <module>ws-quartz-job-chain-example-pom</module>
   </modules>
+
+
+  <properties>
+      <module.name>com.quartzdesk.ws_examples</module.name>
+
+      <com.quartzdesk.version>4.0.0</com.quartzdesk.version>
+
+      <!--
+        Implementation-Vendor-Id used in manifests.
+      -->
+      <vendor.id>com.quartzdesk</vendor.id>
+  </properties>
+
 
   <dependencyManagement>
     <dependencies>
@@ -42,4 +55,235 @@
     </dependencies>
   </dependencyManagement>
 
+
+  <build>
+
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+
+
+<!--        <plugin>-->
+<!--          <artifactId>maven-deploy-plugin</artifactId>-->
+<!--          <version>3.0.0-M1</version>-->
+<!--        </plugin>-->
+
+
+        <plugin>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.0.0-M2</version>
+        </plugin>
+
+
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.1.2</version>
+          <configuration>
+            <archive>
+              <!--
+                Generates the META-INF/INDEX.LIST resource containing the list of all packages contained in the
+                JAR archive. This resource is required by Stripes action resolution framework to discover all
+                ActionBeans in a deployed WAR/EAR under IBM WebSphere. Without this setting, ActionBeans located
+                outside WEB-INF/classes may not be found.
+              -->
+              <index>true</index>
+              <manifest>
+                <addDefaultImplementationEntries>false</addDefaultImplementationEntries>
+              </manifest>
+              <manifestEntries>
+                <Automatic-Module-Name>${module.name}</Automatic-Module-Name>
+
+                <Implementation-Title>${project.name}</Implementation-Title>
+                <Implementation-Version>${project.version}</Implementation-Version>
+                <Implementation-Vendor-Id>${vendor.id}</Implementation-Vendor-Id>
+                <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                <Implementation-Vendor-URL>${project.organization.url}</Implementation-Vendor-URL>
+                <Build-Number>${build.number}</Build-Number>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+
+
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.1.1</version>
+          <configuration>
+            <doclint>none</doclint>
+            <quiet>true</quiet>
+          </configuration>
+        </plugin>
+
+
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.3</version>
+        </plugin>
+
+
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+
+
+        <plugin>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+
+
+        <plugin>
+          <groupId>de.smartics.maven.plugin</groupId>
+          <artifactId>buildmetadata-maven-plugin</artifactId>
+          <version>1.7.0</version>
+          <configuration>
+            <!--
+            <hideCommandLineInfo>false</hideCommandLineInfo>
+            <logLevel>FINEST</logLevel>
+            -->
+            <addScmInfo>false</addScmInfo>
+            <buildDatePattern>yyyy-MM-dd</buildDatePattern>
+            <forceNewProperties>true</forceNewProperties>
+            <properties>
+              <!-- build.number is set in the parent POM -->
+              <property>
+                <name>build.number</name>
+                <section>build</section>
+              </property>
+              <property>
+                <name>project.name</name>
+                <section>project</section>
+              </property>
+              <property>
+                <name>project.version</name>
+                <section>project</section>
+              </property>
+              <property>
+                <name>vendor.id</name>
+                <section>project</section>
+              </property>
+              <property>
+                <name>project.organization.name</name>
+                <section>project</section>
+              </property>
+              <property>
+                <name>project.organization.url</name>
+                <section>project</section>
+              </property>
+            </properties>
+          </configuration>
+        </plugin>
+
+
+        <plugin>
+          <groupId>org.jvnet.jaxb2.maven2</groupId>
+          <artifactId>maven-jaxb22-plugin</artifactId>
+          <version>0.13.3</version>
+
+          <dependencies>
+            <!--
+              Required to override the 0.9.0 jaxb2-basics-runtime version that is a transitive dependency of
+              maven-jaxbXX-plugin. 0.9.0 is lacking the org.jvnet.jaxb2_commons.lang.CopyTo2 class that is
+              required by the copyable and other plugins.
+            -->
+            <dependency>
+              <groupId>org.jvnet.jaxb2_commons</groupId>
+              <artifactId>jaxb2-basics-runtime</artifactId>
+              <version>0.12.0</version>
+            </dependency>
+
+            <!--
+              Required JAXB2 plugin to generate getters for boolean properties.
+              JAXB2 implementation shipped with JDK1.6 that is used to compile the
+              project generates only "is" getter and it makes the boolean property
+              invisible to various frameworks used in the projects (e.g. Jacson,
+              JSTL etc.).
+            -->
+            <dependency>
+              <groupId>com.nebulent.xjc</groupId>
+              <artifactId>boolean-getter</artifactId>
+              <version>0.5</version>
+            </dependency>
+
+            <!-- Support for -Xfluent-api -->
+            <dependency>
+              <groupId>net.java.dev.jaxb2-commons</groupId>
+              <artifactId>jaxb-fluent-api</artifactId>
+              <version>2.1.8</version>
+
+              <exclusions>
+                <exclusion>
+                  <groupId>com.sun.xml.bind</groupId>
+                  <artifactId>jaxb-xjc</artifactId>
+                </exclusion>
+              </exclusions>
+            </dependency>
+
+            <!-- Support for -Xcopyable xjc argument -->
+            <dependency>
+              <groupId>org.jvnet.jaxb2_commons</groupId>
+              <artifactId>jaxb2-basics</artifactId>
+              <version>0.11.1</version>
+            </dependency>
+
+            <!--
+              Required JAXB2 plugin to generate setters for collections. Collection
+              setters are expected by various frameworks most notably the Dozer framework.
+            -->
+            <dependency>
+              <groupId>net.java.dev.vcc.thirdparty</groupId>
+              <artifactId>collection-setter-injector</artifactId>
+              <version>0.5.0-1</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+
+
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>3.0.5</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>1.8</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+
+  </build>
 </project>

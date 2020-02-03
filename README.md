@@ -12,4 +12,4 @@ The versioning of QuartzDesk WS Examples follows the versioning of the QuartzDes
 
 # Copyright and License
 
-Code and documentation copyright 2013-2019 the QuartzDesk WS Examples authors and QuartzDesk.com. Code and docs released under the MIT license.
+Code and documentation copyright 2013-2020 the QuartzDesk WS Examples authors and QuartzDesk.com. Code and docs released under the MIT license.
