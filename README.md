@@ -5,11 +5,11 @@ QuartzDesk WS Examples repository contains simple Java applications that demonst
 # Requirements
 
 ### Java
-JDK 1.7 or newer.
+JDK 8 or newer.
 
 ### Versioning
 The versioning of QuartzDesk WS Examples follows the versioning of the QuartzDesk product. 
 
 # Copyright and License
 
-Code and documentation copyright 2013-2020 the QuartzDesk WS Examples authors and QuartzDesk.com. Code and docs released under the MIT license.
+Code and documentation copyright 2013-2024 the QuartzDesk WS Examples authors and QuartzDesk.com. Code and docs released under the MIT license.
