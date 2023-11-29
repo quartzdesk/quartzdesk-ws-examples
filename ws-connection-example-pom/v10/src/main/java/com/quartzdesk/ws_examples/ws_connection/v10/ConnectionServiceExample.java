@@ -1,6 +1,10 @@
 package com.quartzdesk.ws_examples.ws_connection.v10;
 
 import com.quartzdesk.service.client.connection.v10_0.ConnectionServiceClient;
+import com.quartzdesk.service.connection.v10_0.AddConnectionRequest;
+import com.quartzdesk.service.connection.v10_0.AddConnectionResponse;
+import com.quartzdesk.service.connection.v10_0.DeleteConnectionRequest;
+import com.quartzdesk.service.connection.v10_0.DeleteConnectionResponse;
 import com.quartzdesk.service.connection.v10_0.GetConnectionsRequest;
 import com.quartzdesk.service.connection.v10_0.GetConnectionsResponse;
 import com.quartzdesk.service.connection.v10_0.GetFoldersRequest;
@@ -8,6 +12,9 @@ import com.quartzdesk.service.connection.v10_0.GetFoldersResponse;
 import com.quartzdesk.service.types.v10.connection.Connection;
 import com.quartzdesk.service.types.v10.connection.ConnectionFolder;
 import com.quartzdesk.service.types.v10.connection.SchedulerConnection;
+import com.quartzdesk.service.types.v10.jmx.JmxProtocol;
+import com.quartzdesk.service.types.v10.jmx.RemoteJmxService;
+import com.quartzdesk.service.types.v10.scheduler.SchedulerType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +33,7 @@ public class ConnectionServiceExample
       "http://localhost:8080/quartzdesk/services/connection/v10_0/ConnectionService";
 
   private static final String WS_CONNECTION_SERVICE_USERNAME = "service";
+
   private static final String WS_CONNECTION_SERVICE_PASSWORD = "password";
 
   /**
@@ -53,7 +61,41 @@ public class ConnectionServiceExample
   private void execute()
       throws Exception
   {
+    Long connectionId = registerConnection();
+
     printAllRegisteredConnectionsInFolder( 1L );  // 1 = root folder
+
+    unregisterConnection( connectionId );
+  }
+
+
+  private Long registerConnection()
+      throws Exception
+  {
+    AddConnectionRequest request = new AddConnectionRequest()
+        .withConnection( new SchedulerConnection()
+            .withName( "quartzdesk-ws-examples" )
+            .withRemoteJmxService( new RemoteJmxService()
+                .withHost( "localhost" )
+                .withPort( 11099 )
+                .withProtocol( JmxProtocol.JMXMP )
+                .withSecure( false ) )
+            .withSchedulerObjectName( "quartz:type=QuartzScheduler,name=quartzdesk-ws-examples" )
+            .withSchedulerType( SchedulerType.QUARTZ ) )
+        .withParentFolderId( 1L );  // 1 = root folder
+
+    AddConnectionResponse response = client.addConnection( request );
+    return response.getConnectionId();
+  }
+
+
+  private void unregisterConnection( Long connectionId )
+      throws Exception
+  {
+    DeleteConnectionRequest request = new DeleteConnectionRequest()
+        .withConnectionId( connectionId );
+
+    DeleteConnectionResponse response = client.deleteConnection( request );
   }
 
 
