@@ -24,7 +24,7 @@
   <properties>
     <module.name>com.quartzdesk.ws_examples</module.name>
 
-    <com.quartzdesk.version>4.0.0</com.quartzdesk.version>
+    <com.quartzdesk.version>4.0.13</com.quartzdesk.version>
 
     <!--
       Most recent version that still supports Java 8.

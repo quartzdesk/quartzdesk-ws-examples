@@ -19,7 +19,7 @@
   <properties>
     <module.name>com.quartzdesk.ws_examples.ws_quartz_job_chain.v10</module.name>
 
-    <quartzdesk-api.version>4.0.0</quartzdesk-api.version>
+    <quartzdesk-api.version>4.0.13</quartzdesk-api.version>
   </properties>
 
   <dependencies>
